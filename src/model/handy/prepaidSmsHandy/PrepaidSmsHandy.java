@@ -1,9 +1,10 @@
-package model.handy;
+package model.handy.prepaidSmsHandy;
 
+import model.handy.SmsHandy;
 import model.provider.Provider;
 
 /**
- * Klasse model.handy.PrepaidSmsHandy.
+ * Klasse model.handy.prepaidSmsHandy.PrepaidSmsHandy.
  * Ein Handy, das über ein beim model.provider.Provider verwaltetes Guthaben verfügt
  * und dessen SMS-Versand über dieses Guthaben abgerechnet wird.
  * */

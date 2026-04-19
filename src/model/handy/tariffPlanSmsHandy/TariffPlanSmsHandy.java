@@ -1,9 +1,10 @@
-package model.handy;
+package model.handy.tariffPlanSmsHandy;
 
+import model.handy.SmsHandy;
 import model.provider.Provider;
 
 /**
- * Klasse model.handy.TariffPlanSmsHandy.
+ * Klasse model.handy.tariffPlanSmsHandy.TariffPlanSmsHandy.
  * Ein Vertragshandy, das über eine bestimmte Menge an Frei-SMS verfügt.
  * In einer späteren Version könnten diese nach einer bestimmten Zeit wieder zurückgesetzt werden.
  * Dies wird vorerst noch nicht berücksichtigt.
