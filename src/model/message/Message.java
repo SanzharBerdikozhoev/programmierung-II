@@ -1,9 +1,11 @@
+package model.message;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 
 /**
- * Klasse Message. Eine Nachricht, die über SMSHandys verschickt werden kann.
+ * Klasse model.message.Message. Eine Nachricht, die über SMSHandys verschickt werden kann.
  * */
 public class Message {
     /**
@@ -128,6 +130,11 @@ public class Message {
         this.to = to;
     }
 
+    /**
+     * Vergleicht zwei Objekte vom Typ „Message“
+     * @param obj - das andere Objekt vom Typ "Message"
+     * @return ob beide Objekte gleich sind
+     */
     @Override
     public boolean equals(Object obj) {
         if(obj == this) return true;
@@ -139,6 +146,10 @@ public class Message {
                 Objects.equals(to, other.to);
     }
 
+    /**
+     * Erzeugt das Hash vom Objekt vom Typ "Message"
+     * @return Hashcode vom Objekt vom Typ "Message"
+     */
     @Override
     public int hashCode() {
         return Objects.hash(content, date, from, to);

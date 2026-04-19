@@ -1,9 +1,14 @@
+package model.handy;
+
+import model.message.Message;
+import model.provider.Provider;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
 /**
- * Abstrakte Basisklasse SmsHandy
+ * Abstrakte Basisklasse model.handy.SmsHandy
  * */
 public abstract class SmsHandy {
     protected String number;
@@ -12,7 +17,7 @@ public abstract class SmsHandy {
     protected List<Message> sentMessages;
 
     /**
-     * Konstruktor für Objekte der Klasse SmsHandy
+     * Konstruktor für Objekte der Klasse model.handy.SmsHandy
      *
      * @param number - die Handynummer
      * @param provider - die Providerinstanz
@@ -46,7 +51,13 @@ public abstract class SmsHandy {
     public abstract void payForSms();
 
     /**
-     * Schickt eine SMS über den Provider an den Empfänger.
+     * Abstrakte Methode zum Aktualisieren des Providers für das Handy.
+     * @param newProvider - neuer Provider für das Handy
+     */
+    public abstract void updateProvider(Provider newProvider);
+
+    /**
+     * Schickt eine SMS über den model.provider.Provider an den Empfänger.
      *
      * @param to - der Empfänger der SMS
      * @param content - der Inhalt der SMS
@@ -69,7 +80,7 @@ public abstract class SmsHandy {
     }
 
     /**
-     * Schickt eine SMS ohne den Provider an den Empfänger (quasi per Direkverbindung zwischen zwei Handys)
+     * Schickt eine SMS ohne den model.provider.Provider an den Empfänger (quasi per Direkverbindung zwischen zwei Handys)
      *
      * @param peer - das empfangende Handy
      * @param content - der Inhalt der SMS
@@ -81,7 +92,7 @@ public abstract class SmsHandy {
     /**
      * Empfängt eine SMS und speichert diese in den empfangenen SMS
      *
-     * @param message - das Message-Objekt, welches an das zweite Handy gesendet werden soll.
+     * @param message - das model.message.Message-Objekt, welches an das zweite Handy gesendet werden soll.
      * */
     public void receiveSms(Message message) {
         this.receivedMessages.add(message);
@@ -97,16 +108,16 @@ public abstract class SmsHandy {
     }
 
     /**
-     * Gibt den aktuellen Provider zurück.
+     * Gibt den aktuellen model.provider.Provider zurück.
      *
-     * @return aktueller Provider des Handys
+     * @return aktueller model.provider.Provider des Handys
      * */
     public Provider getProvider() {
         return provider;
     }
 
     /**
-     * Setzt den Provider.
+     * Setzt den model.provider.Provider.
      *
      * @param provider - ProviderInstanz
      * */
@@ -114,6 +125,11 @@ public abstract class SmsHandy {
         this.provider = provider;
     }
 
+    /**
+     * Vergleicht zwei Objekte vom Typ „SmsHandy“
+     * @param obj - das andere Objekt vom Typ "SmsHandy"
+     * @return ob beide Objekte gleich sind
+     */
     @Override
     public boolean equals(Object obj) {
         if(obj == this) return true;
@@ -122,6 +138,10 @@ public abstract class SmsHandy {
         return Objects.equals(this.number, other.number);
     }
 
+    /**
+     * Erzeugt das Hash vom Objekt vom Typ "SmsHandy".
+     * @return Hashcode vom Objekt vom Typ "SmsHandy"
+     */
     @Override
     public int hashCode() {
         return Objects.hash(number);

@@ -1,23 +1,36 @@
+package model.provider;
+
+import model.handy.SmsHandy;
+import model.message.Message;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Ein Provider verwaltet eine Reihe von SmsHandys.
+ * Ein model.provider.Provider verwaltet eine Reihe von SmsHandys.
  * Dazu gehört die Verwaltung des Guthabens.
- * Auch dient der Provider als Kommunikationsschnittstelle zu den Handys, die er verwaltet.
+ * Auch dient der model.provider.Provider als Kommunikationsschnittstelle zu den Handys, die er verwaltet.
  * */
 public class Provider {
+    /**
+     * Liste der Guthaben auf Mobiltelefonen
+     */
     private Map<String, Integer> credits;
 
     /**
+     * Liste der registrierten Telefone
      * Telefonnummer -> Handy
      * */
     private Map<String, SmsHandy> subscribers;
+
+    /**
+     * Eine statische Liste aller Anbieter
+     */
     private static List<Provider> providers = new ArrayList<>();
 
     /**
-     * Konstruktor für Objekte der Klasse Provider.
+     * Konstruktor für Objekte der Klasse model.provider.Provider.
      * */
     public Provider() {
         providers.add(this);
@@ -25,9 +38,9 @@ public class Provider {
 
     /**
      * Lädt Guthaben für ein Handy auf.
-     * Das ist nötig, weil das Handy sein Guthaben nicht selbst ändern kann, sondern nur der Provider.
+     * Das ist nötig, weil das Handy sein Guthaben nicht selbst ändern kann, sondern nur der model.provider.Provider.
      * Negative Geldmengen werden hier erlaubt, um über diese Funktion auch die Kosten für eine Nachricht abziehen zu koennen.
-     * Negative Werte beim händischen Aufladen werden in der Klasse SmsHandy verhindert.
+     * Negative Werte beim händischen Aufladen werden in der Klasse model.handy.SmsHandy verhindert.
      *
      * @param number - Nummer des Telefons
      * @param amount - Hoehe des Geldbetrages
@@ -47,7 +60,7 @@ public class Provider {
     }
 
     /**
-     * Registriert ein neues Handy bei diesem Provider.
+     * Registriert ein neues Handy bei diesem model.provider.Provider.
      *
      * @param smsHandy - das neue Handy
      * */
@@ -87,6 +100,12 @@ public class Provider {
         return findProviderFor(receiver) != null;
     }
 
+    /**
+     * Sucht nach dem Anbieter, bei dem ein Telefon mit einer bestimmten Nummer registriert ist.
+     *
+     * @param receiver - Nummer des gewuenschten Handys
+     * @return Gibt den Anbieter für dieses Telefon zurück; falls kein Anbieter vorhanden ist, wird null zurückgegeben
+     * */
     private Provider findProviderFor(String receiver) {
         for(Provider provider : providers) {
             if(provider.subscribers.containsKey(receiver)) {

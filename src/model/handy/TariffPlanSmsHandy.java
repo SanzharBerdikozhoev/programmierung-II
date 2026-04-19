@@ -1,5 +1,9 @@
+package model.handy;
+
+import model.provider.Provider;
+
 /**
- * Klasse TariffPlanSmsHandy.
+ * Klasse model.handy.TariffPlanSmsHandy.
  * Ein Vertragshandy, das über eine bestimmte Menge an Frei-SMS verfügt.
  * In einer späteren Version könnten diese nach einer bestimmten Zeit wieder zurückgesetzt werden.
  * Dies wird vorerst noch nicht berücksichtigt.
@@ -41,6 +45,11 @@ public class TariffPlanSmsHandy extends SmsHandy {
         this.remainingFreeSms--;
     }
 
+    /**
+     * Setzt neuer Provider für das Handy und fügt 20 Frei-SMS als Guthaben hinzu.
+     * @param newProvider - neuer Provider für das Handy
+     */
+    @Override
     public void updateProvider(Provider newProvider) {
         this.provider = newProvider;
         this.remainingFreeSms += 20;

@@ -1,6 +1,10 @@
+package model.handy;
+
+import model.provider.Provider;
+
 /**
- * Klasse PrepaidSmsHandy.
- * Ein Handy, das über ein beim Provider verwaltetes Guthaben verfügt
+ * Klasse model.handy.PrepaidSmsHandy.
+ * Ein Handy, das über ein beim model.provider.Provider verwaltetes Guthaben verfügt
  * und dessen SMS-Versand über dieses Guthaben abgerechnet wird.
  * */
 public class PrepaidSmsHandy extends SmsHandy {
@@ -16,7 +20,7 @@ public class PrepaidSmsHandy extends SmsHandy {
     }
 
     /**
-     * Lädt das Guthaben für das SmsHandy-Objekt auf.
+     * Lädt das Guthaben für das model.handy.SmsHandy-Objekt auf.
      *
      * @param amount - Menge, um die aufgeladen werden soll.
      * */
@@ -25,7 +29,7 @@ public class PrepaidSmsHandy extends SmsHandy {
     }
 
     /**
-     * Zieht Guthaben vom SmsHandy-Objekt ab.
+     * Zieht Guthaben vom model.handy.SmsHandy-Objekt ab.
      *
      * @param amount - Menge, die vom Guthaben abgezogen werden soll
      * */
@@ -56,6 +60,11 @@ public class PrepaidSmsHandy extends SmsHandy {
         this.withdraw(COST_PER_SMS);
     }
 
+    /**
+     * Setzt neuer Provider für das Handy und fügt 200 Guthaben hinzu.
+     * @param newProvider - neuer Provider für das Handy
+     */
+    @Override
     public void updateProvider(Provider newProvider) {
         this.provider = newProvider;
         this.provider.deposit(this.getNumber(), 200);
